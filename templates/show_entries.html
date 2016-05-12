@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('generate_entry') }}" method="post" class="generate-entry">
+    <dl>
+        <dt>Nazev
+        <dd><input type="text" size="30" name = "booze_name">
+        <dt>Původ
+        <dd><input type="text" size="30" name = "booze_origin">
+        <dd><input type="submit" value="Generovat">
+    </dl>
+    </form>
+
+    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+            <dl>
+                <dt>Title:
+                <dd><input type="text" size="30" name="title" value="{{ title }}">
+                <dt>Text:
+                <dd><textarea name="text" rows="5" cols="40">{{ text }}</textarea>
+                <dd><input type="submit" value="Přidat na wiki">
+            </dl>
+    </form>
+{% endblock %}
