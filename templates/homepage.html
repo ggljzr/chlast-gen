@@ -1,53 +1,55 @@
 <head>
     <title>Chlast-gen</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
 
 <script type="text/javascript">
-
-function show_smoothness()
-{
-    var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson  }};
-    var val = document.getElementById("smoothness").value;
-    document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
-}
-
+    function show_smoothness() {
+        var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson }};
+        var val = document.getElementById("smoothness").value;
+        document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
+    }
 </script>
 
+</head>
+<body onload="show_smoothness()">
 
-<body>
 
-<div class="page">
-    <h1> Chlast-gen </h1>
+    <div class="page">
+        <h1> Chlast-gen </h1>
 
-    <form method=post action="{{ url_for('generate_entry') }}">
-    <dl>
-        <div class="form_elem">
-        <h2>{{ form.booze_name.label }}</h2>
-        {{ form.booze_name(class="text") }}
-        </div>
-        <div class="form_elem">
-            <h2>Druh a původ</h2>
-        {{ form.booze_type }}
-        {{ form.booze_origin }}
-        {{ form.booze_shop }}
-        </div>
-        
-        <div class="form_elem">
-            <h2>Smoothness</h2>
-        {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness()") }}
-        <span id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</span>
-        </div>
-    
-    </dl>
-        <p><input type=submit value="Generovat", class="button">
-</form>
-</div>
+        <form method=post action="{{ url_for('generate_entry') }}">
+            <dl>
+                <div class="form_elem">
+                    <h2>{{ form.booze_name.label }}</h2> 
+                    {{ form.booze_name(class="text") }}
+                </div>
+                <div class="form_elem">
+                    <h2>Druh a původ</h2> 
+                    {{ form.booze_type }} 
+                    {{ form.booze_origin }} 
+                    {{ form.booze_shop }}
+                </div>
 
-<div class="page">
-<form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
-    <dl>
-        <dt><h2>Název článku</h2>
+                <div class="form_elem">
+                    <h2>Smoothness</h2> 
+                    {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness()") }}
+                    <div id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
+                </div>
+
+                <div class="form_elem">
+                    <h2>Pártoška</h2>
+                    {{ form.party_link(class="text") }}
+                </div>
+
+            </dl>
+            <p><input type=submit value="Generovat" , class="button">
+        </form>
+    </div>
+
+    <div class="page">
+        <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+            <dl>
+                <dt><h2>Název článku</h2>
         <input type="text" size="30" name="title" value="{{ title }}" class="text">
         <dt><h2>Text</h2>
         <textarea name="text" rows="10" cols="60" class="text">{{ text }}</textarea>
@@ -55,4 +57,20 @@ function show_smoothness()
         <p><input type="submit" value="Přidat na wiki" class="button"></p>
 </form>
 </div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+      <div class="{{ category }}">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+{% endwith %}
+
+{% if img_link != '' %}
+<div class="page">
+    <h2>Náhled obrázku</h2>
+    <img src="{{ img_link }}" class="img_preview">
+</div>
+{% endif %}
+
 </body>

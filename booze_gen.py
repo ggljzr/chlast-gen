@@ -3,6 +3,7 @@ from wtforms.fields.html5 import IntegerRangeField
 
 import pytoml as toml
 
+from api_access import get_image_url
 
 class BoozeForm(Form):
 
@@ -16,8 +17,9 @@ class BoozeForm(Form):
                          (choice, choice) for choice in config['booze_gen']['origins']])
     booze_type = SelectField('Typ', choices = [(choice, choice) for choice in config['booze_gen']['types']])
     booze_shop = SelectField('Shop', choices = [(choice, choice) for choice in config['booze_gen']['shops']])
-    smoothness = IntegerRangeField('Smoothness', default=0)
-    
+    smoothness = IntegerRangeField('Smoothness')
+    party_link = TextField('Pártoška')
+
 
 class Booze(object):
 
@@ -28,6 +30,11 @@ class Booze(object):
         self.smoothness = int(form['smoothness'])
         self.smoothness_level = smooth_levels[self.smoothness]
         self.booze_type = form['booze_type']
+        self.party_link = form['party_link']
+
+        query = '%27{}+{}%27'.format(self.name.replace(' ', '+'), self.booze_type)
+
+        self.img_link = get_image_url(query) 
 
     def generate_text(self):
         text = "{} {} byla pořízena v oblíbeném obchodě {}.\n".format(
@@ -35,5 +42,9 @@ class Booze(object):
         text = text + "Země původu je {}.\n".format(self.origin)
         text = text + \
             "Chuťově je to docela {}.\n".format(self.smoothness_level)
-        text = text + "Smoothness je {}.".format(self.smoothness)
+
+        if(len(self.party_link) > 0):
+            text = text + "Lahvinka byla zkonzumována na kalbě [[{}]].".format(self.party_link)
+
+        text = text + "Obrázek: {}".format(self.img_link)
         return text

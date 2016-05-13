@@ -13,9 +13,9 @@ h2              { font-size: 1.2em; margin-top: 6px;}
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
                   margin-bottom: 1em; background: #fafafa; }
-.flash          { background: #CEE5F5; padding: 0.5em;
-                  border: 1px solid #AACBE2; }
-.error          { background: #F0D6D6; padding: 0.5em; }
+
+.flash          { background: #7A8A5D; color:#fff4e8 ;margin: 2em auto;  padding: 0.5em; width: 35em;}
+.error          { background: #955252; color:#fff4e8 ;margin: 2em auto;  padding: 0.5em; width: 35em;}
 
 .form_elem   {padding: 5px;}
 
@@ -23,6 +23,8 @@ h2              { font-size: 1.2em; margin-top: 6px;}
 .button:hover {background: #60B1B7;}
 
 .text {border:none; background-color: #f0f0f0;}
-#smoothness_value {padding: 5px;}
+#smoothness_value {padding: 5px; width: 40%;}
 
 input[type="range"], select {margin: 5px;}
+
+img{max-width: 35em}
