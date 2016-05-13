@@ -1,0 +1,6 @@
+rpi_rf24.out
+*.swp
+*.o
+zprava
+*.pyc
+__pycache__

@@ -1,0 +1,58 @@
+<head>
+    <title>Chlast-gen</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<script type="text/javascript">
+
+function show_smoothness()
+{
+    var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson  }};
+    var val = document.getElementById("smoothness").value;
+    document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
+}
+
+</script>
+
+
+<body>
+
+<div class="page">
+    <h1> Chlast-gen </h1>
+
+    <form method=post action="{{ url_for('generate_entry') }}">
+    <dl>
+        <div class="form_elem">
+        <h2>{{ form.booze_name.label }}</h2>
+        {{ form.booze_name(class="text") }}
+        </div>
+        <div class="form_elem">
+            <h2>Druh a původ</h2>
+        {{ form.booze_type }}
+        {{ form.booze_origin }}
+        {{ form.booze_shop }}
+        </div>
+        
+        <div class="form_elem">
+            <h2>Smoothness</h2>
+        {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness()") }}
+        <span id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</span>
+        </div>
+    
+    </dl>
+        <p><input type=submit value="Generovat", class="button">
+</form>
+</div>
+
+<div class="page">
+<form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+    <dl>
+        <dt><h2>Název článku</h2>
+        <input type="text" size="30" name="title" value="{{ title }}" class="text">
+        <dt><h2>Text</h2>
+        <textarea name="text" rows="10" cols="60" class="text">{{ text }}</textarea>
+    </dl>
+        <p><input type="submit" value="Přidat na wiki" class="button"></p>
+</form>
+</div>
+</body>
