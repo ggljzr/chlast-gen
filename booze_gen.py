@@ -21,6 +21,10 @@ class BoozeForm(Form):
     party_link = TextField('Pártoška')
 
 
+class BoozeGenForm(Form):
+    article_name = TextField('Název článku', [validators.Length(min=1)])
+    article_text = TextAreaField('', [validators.Length(min=10)])
+
 class Booze(object):
 
     def __init__(self, form, smooth_levels):
@@ -48,3 +52,9 @@ class Booze(object):
 
         text = text + "Obrázek: {}".format(self.img_link)
         return text
+
+class Gin(Booze):
+    pass
+
+class Vodka(Booze):
+    pass
