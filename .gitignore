@@ -1,6 +1,5 @@
-rpi_rf24.out
 *.swp
 *.o
-zprava
+config.toml
 *.pyc
 __pycache__

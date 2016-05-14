@@ -1,6 +1,5 @@
 [bing_api]
-key = 'U9OI1aeK76SKchqFaKBg1c0ICli5eEetnYjUzSpJ6Gg'
-
+key = 'your bing account key'
 
 [booze_gen]
 types = ['Vodka', 'Gin', 'Ovocná', 'Rum', 'Whisky', 'Cognac', 'Jiná hnědka']

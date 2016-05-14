@@ -7,9 +7,11 @@ from api_access import get_image_url
 
 class BoozeForm(Form):
 
+    #tady to mozna udelat pres nakej global at se ten config nemusi znova nacitat
     config = []
     with open('config.toml') as config_file:
         config = toml.load(config_file)
+
     smooth_levels = len(config['booze_gen']['smoothness_levels'])
 
     booze_name = TextField('Název', [validators.Length(min=1)])
@@ -38,7 +40,9 @@ class Booze(object):
 
         query = '%27{}+{}%27'.format(self.name.replace(' ', '+'), self.booze_type)
 
-        self.img_link = get_image_url(query) 
+        #tady pak asi predat celej ten 'bing_api' tag z toho configu protoze
+        #tam mozna bude naky dalsi nastaveni toho vyhledavace
+        self.img_link = get_image_url(query, config['bing_api']['key']) 
 
     def generate_text(self):
         text = "{} {} byla pořízena v oblíbeném obchodě {}.\n".format(
