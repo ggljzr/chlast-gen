@@ -28,3 +28,5 @@ h2              { font-size: 1.2em; margin-top: 6px;}
 input[type="range"], select {margin: 5px;}
 
 img{max-width: 35em}
+
+div#juniperness_div, div#pepperness_div {display:none;}

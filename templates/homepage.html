@@ -2,13 +2,32 @@
     <title>Chlast-gen</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-<script type="text/javascript">
-    function show_smoothness() {
-        var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson }};
-        var val = document.getElementById("smoothness").value;
-        document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
-    }
-</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function show_smoothness() {
+            var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson }};
+            var val = document.getElementById("smoothness").value;
+            document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
+        }
+
+        function show_boozetype_fields()
+        {
+            var booze_type = document.getElementById("booze_type").value;
+            
+
+            if(booze_type == "Gin")
+            {
+                $("#juniperness_div").slideDown();
+                $("#pepperness_div").slideDown();
+            }
+            else
+            {
+                $("#juniperness_div").slideUp();
+                $("#pepperness_div").slideUp();
+            }
+        }
+    </script>
 
 </head>
 <body onload="show_smoothness()">
@@ -25,7 +44,7 @@
                 </div>
                 <div class="form_elem">
                     <h2>Druh a původ</h2> 
-                    {{ form.booze_type }} 
+                    {{ form.booze_type(onchange="show_boozetype_fields()") }} 
                     {{ form.booze_origin }} 
                     {{ form.booze_shop }}
                 </div>
@@ -34,6 +53,16 @@
                     <h2>{{ form.smoothness.label }}</h2> 
                     {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness()") }}
                     <div id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
+                </div>
+
+                <div class="form_elem" id="juniperness_div">
+                    <h2>{{ form.juniperness.label }}</h2>
+                    {{ form.juniperness(min=0, max=100) }}
+                </div>
+
+                <div class="form_elem" id="pepperness_div">
+                    <h2>{{ form.pepperness.label }}</h2>
+                    {{ form.pepperness(min=0, max=100) }}
                 </div>
 
                 <div class="form_elem">

@@ -20,6 +20,8 @@ class BoozeForm(Form):
     booze_type = SelectField('Typ', choices = [(choice, choice) for choice in config['booze_gen']['types']])
     booze_shop = SelectField('Shop', choices = [(choice, choice) for choice in config['booze_gen']['shops']])
     smoothness = IntegerRangeField('Smoothness')
+    juniperness =  IntegerRangeField('Jalovcovost')
+    pepperness = IntegerRangeField('Pepřovost')
     party_link = TextField('Pártoška')
 
 
@@ -29,12 +31,12 @@ class BoozeGenForm(Form):
 
 class Booze(object):
 
-    def __init__(self, form, smooth_levels):
+    def __init__(self, form, config):
         self.name = form['booze_name']
         self.origin = form['booze_origin']
         self.shop = form['booze_shop']
         self.smoothness = int(form['smoothness'])
-        self.smoothness_level = smooth_levels[self.smoothness]
+        self.smoothness_level = config['booze_gen']['smoothness_levels'][self.smoothness]
         self.booze_type = form['booze_type']
         self.party_link = form['party_link']
 
@@ -54,11 +56,20 @@ class Booze(object):
         if(len(self.party_link) > 0):
             text = text + "Lahvinka byla zkonzumována na kalbě [[{}]].".format(self.party_link)
 
-        text = text + "Obrázek: {}".format(self.img_link)
+        text = text + "Obrázek: {}\n".format(self.img_link)
         return text
 
 class Gin(Booze):
-    pass
+    def __init__(self, form, config):
+        Booze.__init__(self, form, config)
+        self.juniperness = form['juniperness']
+        self.pepperness = form['pepperness']
+
+    def generate_text(self):
+        text = super(Gin, self).generate_text()
+        text = text + "Jalovcovost je {}.\n".format(self.juniperness)
+        text = text + "Pepřovost je {}.\n".format(self.pepperness)
+        return text
 
 class Vodka(Booze):
     pass
