@@ -51,11 +51,9 @@ def generate_entry():
         new_booze = Gin(request.form, config)
     else:
         new_booze = Booze(request.form, config)
-
     text = new_booze.generate_text()
 
     form = BoozeForm(request.form)
-
     gen_form = BoozeGenForm()
 
     gen_form.article_text.data = text

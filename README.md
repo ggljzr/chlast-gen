@@ -1,0 +1,1 @@
+Generátor popisu chlastu.
