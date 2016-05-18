@@ -10,3 +10,4 @@ všechno by mělo jít nainstalovat přes pip, ale na windows nevim no
 
 ##todo
 u ginu polozku s tonicama, ktery sme s nim kalili a rozliseni kvality pro neat a v gt.
+zkusit ten angular.js
