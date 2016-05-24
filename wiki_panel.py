@@ -2,7 +2,9 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, \
              render_template, flash
 
-from booze_gen import Booze, Gin, BoozeForm, BoozeGenForm
+from booze_gen import Booze, Gin
+from booze_form import BoozeForm, BoozeGenForm
+
 import pytoml as toml
 
 app = Flask(__name__)
@@ -38,17 +40,15 @@ def add_entry():
         gen_form = BoozeGenForm(request.form)
         return render_template('homepage.html', form = form, gen_form = gen_form, img_link = '')
 
-    print(title)
-    print(text)
     return redirect(url_for('home_page'))
 
 @app.route("/generate", methods=['POST'])
 def generate_entry():
-
     if request.form['booze_type'] == 'Gin':
         new_booze = Gin(request.form, config)
     else:
         new_booze = Booze(request.form, config)
+    
     text = new_booze.generate_text()
 
     form = BoozeForm(request.form)
