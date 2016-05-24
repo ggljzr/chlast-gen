@@ -18,15 +18,15 @@ h2              { font-size: 1.2em; margin-top: 6px;}
 .error          { background: #955252; color:#fff4e8 ;margin: 2em auto;  padding: 0.5em; width: 35em;}
 
 .form_elem   {padding: 5px;}
+.gin_form_elem {padding: 5px; display: none;}
 
 .button {margin: 10px; background: #61878B; color:#fff4e8; border: none; padding: 10px;}
 .button:hover {background: #60B1B7;}
 
 .text {border:none; background-color: #f0f0f0;}
-#smoothness_value {padding: 5px; width: 40%;}
+#smoothness_value, #gt_smoothness_value {padding: 5px; width: 40%;}
 
 input[type="range"], select {margin: 5px;}
 
 img{max-width: 35em}
 
-div#juniperness_div, div#pepperness_div {display:none;}

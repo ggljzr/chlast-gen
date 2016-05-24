@@ -5,32 +5,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
     <script type="text/javascript">
-        function show_smoothness() {
+        function show_smoothness(smoothness_elem_id, smoothness_value_id) {
             var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson }};
-            var val = document.getElementById("smoothness").value;
-            document.getElementById("smoothness_value").innerHTML = smooth_levels[val];
+            var val = document.getElementById(smoothness_elem_id).value;
+            document.getElementById(smoothness_value_id).innerHTML = smooth_levels[val];
         }
 
         function show_boozetype_fields()
         {
             var booze_type = document.getElementById("booze_type").value;
+            var gin_form_elems = document.getElementsByClassName("gin_form_elem");
             
-
+            //tohle asi taky refactornout pak
+            //mozna pouzit nakej framework na ten javascript
             if(booze_type == "Gin")
             {
-                $("#juniperness_div").slideDown();
-                $("#pepperness_div").slideDown();
+                for(i = 0; i < gin_form_elems.length; i++)
+                {
+                    $("#" + gin_form_elems[i].id).slideDown();
+                }
             }
             else
             {
-                $("#juniperness_div").slideUp();
-                $("#pepperness_div").slideUp();
+                for(i = 0; i < gin_form_elems.length; i++)
+                {
+                    $("#" + gin_form_elems[i].id).slideUp();
+                }
             }
         }
     </script>
 
 </head>
-<body onload="show_smoothness()">
+<body onload="show_smoothness('smoothness', 'smoothness_value');show_smoothness('gt_smoothness', 'gt_smoothness_value')">
 
 
     <div class="page">
@@ -51,19 +57,31 @@
 
                 <div class="form_elem">
                     <h2>{{ form.smoothness.label }}</h2> 
-                    {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness()") }}
+                    {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness('smoothness', 'smoothness_value')") }}
                     <div id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
                 </div>
 
-                <div class="form_elem" id="juniperness_div">
+                <div class="gin_form_elem" id="juniperness_div">
                     <h2>{{ form.juniperness.label }}</h2>
                     {{ form.juniperness(min=0, max=100) }}
                 </div>
 
-                <div class="form_elem" id="pepperness_div">
+                <div class="gin_form_elem" id="pepperness_div">
                     <h2>{{ form.pepperness.label }}</h2>
                     {{ form.pepperness(min=0, max=100) }}
                 </div>
+
+                <div class="gin_form_elem" id="tonics_div">
+                    <h2>{{ form.tonics.label }}</h2>
+                    {{ form.tonics }}
+                </div>
+
+                <div class="gin_form_elem" id="gt_smoothness_div">
+                    <h2>{{ form.gt_smoothness.label }}</h2> 
+                    {{ form.gt_smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness('gt_smoothness', 'gt_smoothness_value')") }}
+                    <div id="gt_smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
+                </div>
+
 
                 <div class="form_elem">
                     <h2>{{ form.party_link.label }}</h2>

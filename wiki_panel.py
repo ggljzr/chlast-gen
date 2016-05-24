@@ -45,8 +45,6 @@ def add_entry():
 @app.route("/generate", methods=['POST'])
 def generate_entry():
 
-    print(request.form['booze_name'])
-   
     if request.form['booze_type'] == 'Gin':
         new_booze = Gin(request.form, config)
     else:
@@ -65,8 +63,6 @@ if __name__ == "__main__":
     with open('config.toml', 'rb') as config_file:
         config = toml.load(config_file)
     
-    print(config)
-
     app.run(debug=True)
 
 
