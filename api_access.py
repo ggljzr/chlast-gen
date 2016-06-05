@@ -20,5 +20,6 @@ def get_image_url(query, api_key):
     request = requests.get(url, headers = {'Authorization' : credential_string})
 
     results = request.json()
-
-    return results['d']['results'][0]['MediaUrl']
+    if len(results['d']['results']) > 0:
+        return results['d']['results'][0]['MediaUrl']
+    return None
