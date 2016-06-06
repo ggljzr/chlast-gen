@@ -7,15 +7,14 @@ class Booze(object):
         self.origin = form['booze_origin']
         self.shop = form['booze_shop']
         self.smoothness = int(form['smoothness'])
-        self.smoothness_level = config['booze_gen'][
-                'smoothness_levels'][self.smoothness]
+        self.smoothness_level = config['booze_gen']['smoothness_levels'][self.smoothness]
         self.booze_type = form['booze_type']
         self.party_link = form['party_link']
 
         query = '%27{}+{}%27'.format(self.name.replace(' ',
             '+'), self.booze_type)
 
-        # tady pak asi predat celej ten 'bing_api' tag z toho configu protoze
+       # tady pak asi predat celej ten 'bing_api' tag z toho configu protoze
         # tam mozna bude naky dalsi nastaveni toho vyhledavace
         if form['include_img_link'] == 'y':
             self.img_link = get_image_url(query, config['bing_api']['key'])

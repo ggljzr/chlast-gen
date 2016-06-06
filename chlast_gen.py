@@ -7,6 +7,8 @@ from booze_form import BoozeForm, BoozeGenForm
 
 import pytoml as toml
 
+FULL_CONFIG_PATH="/home/ubuntu"
+
 app = Flask(__name__)
 
 app.config.update(dict(
@@ -18,6 +20,8 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 config = []
 
+with open('config.toml', 'rb') as config_file:
+        config = toml.load(config_file)
 
 @app.route("/")
 def home_page():
@@ -60,9 +64,6 @@ def generate_entry():
     return render_template('homepage.html', form=form, gen_form = gen_form, img_link = new_booze.img_link)
 
 if __name__ == "__main__":
-    with open('config.toml', 'rb') as config_file:
-        config = toml.load(config_file)
-    
-    app.run(host='0.0.0.0', port=8080)
+     app.run(host='0.0.0.0', port=8080)
 
 
