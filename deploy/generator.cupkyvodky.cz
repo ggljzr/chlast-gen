@@ -1,0 +1,10 @@
+server
+{
+	listen 80;
+	server_name generator.cupkyvodky.cz;
+
+	location / {
+		include uwsgi_params;
+		uwsgi_pass unix:PATH_TO_APP_FOLDER/chlast-gen-wsgi.sock;
+	}
+}

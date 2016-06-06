@@ -1,0 +1,14 @@
+[uwsgi]
+base=PATH_TO_APP_FOLDER
+app=chlast_gen
+module=%(app)
+
+home=%(base)/venv
+pythonpath=%(base)
+
+socket=PATH_TO_APP_FOLDER/%n.sock
+chmod-socket=666
+
+callable=app
+logto=/var/log/uwsgi/%n.log
+
