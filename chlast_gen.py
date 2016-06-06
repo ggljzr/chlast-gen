@@ -10,7 +10,7 @@ import pytoml as toml
 app = Flask(__name__)
 
 app.config.update(dict(
-    DEBUG=False,
+    DEBUG=True,
     SECRET_KEY="babababa1348",
     ))
 

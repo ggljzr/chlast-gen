@@ -33,6 +33,7 @@ class BoozeForm(Form):
         choice, choice) for choice in config['booze_gen']['tonics']])
     gt_smoothness = IntegerRangeField('Smoothness v G&T')
     party_link = TextField('Pártoška')
+    include_img_link = BooleanField('Hledat obrázek', default=True) 
 
 
 class BoozeGenForm(Form):

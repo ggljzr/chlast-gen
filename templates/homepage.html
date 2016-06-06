@@ -88,8 +88,12 @@
                     {{ form.party_link(class="text") }}
                 </div>
 
+                
+
             </dl>
             <p><input type=submit value="Generovat" , class="button">
+            <span>{{ form.include_img_link.label }} {{ form.include_img_link }}</span>
+            </p>
         </form>
     </div>
 
@@ -117,7 +121,7 @@
       {% endif %}
 {% endwith %}
 
-{% if img_link != '' %}
+{% if img_link != None %}
 <div class="page">
     <h2>Náhled obrázku</h2>
     <img src="{{ img_link }}" class="img_preview">
