@@ -7,12 +7,12 @@ from booze_form import BoozeForm, BoozeGenForm
 
 import pytoml as toml
 
-FULL_CONFIG_PATH="/home/ubuntu"
+DEBUG=True
 
 app = Flask(__name__)
 
 app.config.update(dict(
-    DEBUG=True,
+    DEBUG=DEBUG,
     SECRET_KEY="babababa1348",
     ))
 
@@ -64,6 +64,6 @@ def generate_entry():
     return render_template('homepage.html', form=form, gen_form = gen_form, img_link = new_booze.img_link)
 
 if __name__ == "__main__":
-     app.run(host='0.0.0.0', port=8080)
+     app.run(host='0.0.0.0', port=8080, debug=DEBUG)
 
 
