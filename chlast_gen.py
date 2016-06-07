@@ -28,21 +28,20 @@ def home_page():
     form = BoozeForm()
     gen_form = BoozeGenForm()
     
-    return render_template('homepage.html', form = form, gen_form = gen_form, img_link = '')
+    return render_template('homepage.html', form = form, gen_form = gen_form, img_link = None)
 
 @app.route("/add", methods=['POST'])
 def add_entry():
-    text = request.form['article_text']
-    title = request.form['article_name']
+    gen_form = BoozeGenForm(request.form)
 
-    #tady asi pak udelat tu validaci pres form.validate()
-    if len(text) > 0 and len(title) > 0:
+    if gen_form.validate():
         flash("Článek přidán", 'flash')
     else:
+        #tady je blby ze se takhle ztrati ten vyplnenej BoozeForm
+        #kdyz se to nepovede
         flash("Prázdný článek", 'error')
         form = BoozeForm()
-        gen_form = BoozeGenForm(request.form)
-        return render_template('homepage.html', form = form, gen_form = gen_form, img_link = '')
+        return render_template('homepage.html', form = form, gen_form = gen_form, img_link = None)
 
     return redirect(url_for('home_page'))
 

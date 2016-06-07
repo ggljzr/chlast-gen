@@ -49,8 +49,8 @@ class Gin(Booze):
         self.gt_smoothness_level = config['booze_gen'][
                 'smoothness_levels'][self.gt_smoothness]
 
-        def generate_text(self):
-            text = super(Gin, self).generate_text()
+    def generate_text(self):
+        text = super(Gin, self).generate_text()
         text = text + "Jalovcovost je {}.\n".format(self.juniperness)
         text = text + "Pepřovost je {}.\n".format(self.pepperness)
         # tady ofc zatim neni zadna kontrola jestli to pole je prazdny :-)
