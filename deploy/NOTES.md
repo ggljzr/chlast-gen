@@ -11,6 +11,9 @@
 
 ##Navod
 http://vladikk.com/2013/09/12/serving-flask-with-nginx-on-ubuntu/
+Https
+https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
+
 
 ## Nginx vritual host config
 upravit cestu k aplikaci v  "generator.cupkyvodky.cz" a pridat do /etc/nginx/sites-available
