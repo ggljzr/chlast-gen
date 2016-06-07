@@ -47,16 +47,21 @@ def add_entry():
 
 @app.route("/generate", methods=['POST'])
 def generate_entry():
+
+    form = BoozeForm(request.form)
+    gen_form = BoozeGenForm()
+
+    if not form.validate():
+        flash("Chybí název chlastu", 'error')
+        return render_template('homepage.html', form=form, gen_form = gen_form, img_link = None)
+
     if request.form['booze_type'] == 'Gin':
         new_booze = Gin(request.form, config)
     else:
         new_booze = Booze(request.form, config)
     
     text = new_booze.generate_text()
-
-    form = BoozeForm(request.form)
-    gen_form = BoozeGenForm()
-
+    
     gen_form.article_text.data = text
     gen_form.article_name.data = new_booze.name
 
