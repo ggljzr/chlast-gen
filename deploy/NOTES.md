@@ -19,12 +19,12 @@ http://vladikk.com/2013/09/12/serving-flask-with-nginx-on-ubuntu/
 
 
 ##Sec testy
-https://securityheaders.io/
-https://www.ssllabs.com/ssltest/
+* https://securityheaders.io/
+* https://www.ssllabs.com/ssltest/
 
 ## Nginx vritual host config
-upravit cestu k aplikaci v  "generator.cupkyvodky.cz" a pridat do /etc/nginx/sites-available
-udelat link do /etc/nginx/sites-enable 
+* upravit cestu k aplikaci v  "generator.cupkyvodky.cz" a pridat do /etc/nginx/sites-available
+* udelat link do /etc/nginx/sites-enable 
 
 ## Starting services
 zatim bez upstart skriptu
