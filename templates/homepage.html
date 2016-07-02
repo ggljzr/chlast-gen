@@ -56,6 +56,11 @@
                 </div>
 
                 <div class="form_elem">
+                    <h2>{{ form.voltage.label }}</h2>
+                    {{ form.voltage(placeholder="Čísla s desetinnou tečkou") }}
+                </div>
+
+                <div class="form_elem">
                     <h2>{{ form.smoothness.label }}</h2> 
                     {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness('smoothness', 'smoothness_value')") }}
                     <div id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>

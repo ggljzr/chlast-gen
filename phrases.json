@@ -1,0 +1,20 @@
+{
+    "vodka" : {
+        "buy" : ["Tuhle vodku sme pořídili v obchodě ##shop##", "Vodka ##name## byla pořízena v obchodě ##shop##"],
+        "origin" : ["Země původu je ##origin##"]
+    },
+   "gin" : {
+        "buy" : ["Gin ##name## byl pořízen v obchodě ##shop##", "Lahvinku ginu ##name## sme pořídili v oblíbeném obchodě ##shop##"],
+        "origin" : {
+            "Anglie" : ["Lahvinka pochází z Anglie", "Gin byl vyroben v Anglii"],
+            "Čechy" : ["Je to gin původem z Čech"],
+            "other" : ["Země původu je ##origin##"]
+        },
+
+        "smoothness" : [
+            ["Chuťově neni vůbec smooth", "Měl výrazně chlastovou chuť", "Byl to docela denaturák"],
+            ["Co se týče chuti, tak nic moc, docela pálil", "Gin neni moc smooth", "Na gin docela pálí"],
+            ["Byl celkem smooth, ale nic zázračnýho", "Docela se dal, ale chlast tam byl celkem cejtit"]
+        ]
+   } 
+}

@@ -52,7 +52,9 @@ def generate_entry():
     gen_form = BoozeGenForm()
 
     if not form.validate():
-        flash("Chybí název chlastu", 'error')
+        #tady pak upravit tu error message
+        #v tyhle je vsechno dulezity ale vypada divne
+        flash("Chyba ve formuláři: {}".format(form.errors), 'error')
         return render_template('homepage.html', form=form, gen_form = gen_form, img_link = None)
 
     if request.form['booze_type'] == 'Gin':

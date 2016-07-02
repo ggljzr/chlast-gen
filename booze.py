@@ -10,6 +10,7 @@ class Booze(object):
         self.smoothness_level = config['booze_gen']['smoothness_levels'][self.smoothness]
         self.booze_type = form['booze_type']
         self.party_link = form['party_link']
+        self.voltage = form['voltage']
 
         query = '%27{}+{}%27'.format(self.name.replace(' ',
             '+'), self.booze_type)
@@ -26,7 +27,7 @@ class Booze(object):
                 self.booze_type, self.name, self.shop)
         text = text + "Země původu je {}.\n".format(self.origin)
         text = text + \
-                "Chuťově je to docela {}.\n".format(self.smoothness_level)
+                "Chuťově je to docela {}, voltáž je {} %. \n".format(self.smoothness_level, self.voltage)
 
         if(len(self.party_link) > 0):
             text = text + \
