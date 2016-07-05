@@ -5,5 +5,4 @@ key = 'your bing account key'
 types = ['Vodka', 'Gin', 'Ovocná', 'Rum', 'Whisky', 'Cognac', 'Jiná hnědka']
 shops = ['La-vin', 'Top Alkohol', 'Makro', 'Alkohol CZ', 'Fivuza'] 
 origins = ['Polsko', 'Rusko', 'Anglie', 'USA', 'Čechy', 'Slovensko', 'Irsko', 'Francie', 'Japonsko']   
-smoothness_levels = ['denaturák','nic moc smooth', 'že trošku pálí', 'celkem smooth', 'smooth jak svině']
 tonics = ['Fever Tree', '1724', 'Thomas Henry', 'Schweppes', 'Schweppes Heritage']

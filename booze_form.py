@@ -17,7 +17,10 @@ class BoozeForm(Form):
     with open('config.toml') as config_file:
         config = toml.load(config_file)
 
-    smooth_levels = len(config['booze_gen']['smoothness_levels'])
+
+    SMOOTH_LEVELS = 5
+    PEPPER_LEVELS = 5
+    JUNIP_LEVELS = 5
 
     booze_name = TextField('Název', [validators.Length(min=1, message="Je nutný zadat název chlastu")])
     booze_origin = SelectField('Původ', choices=[

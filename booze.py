@@ -7,7 +7,6 @@ class Booze(object):
         self.origin = form['booze_origin']
         self.shop = form['booze_shop']
         self.smoothness = int(form['smoothness'])
-        self.smoothness_level = config['booze_gen']['smoothness_levels'][self.smoothness]
         self.booze_type = form['booze_type']
         self.party_link = form['party_link']
         self.voltage = form['voltage']
@@ -27,7 +26,7 @@ class Booze(object):
                 self.booze_type, self.name, self.shop)
         text = text + "Země původu je {}.\n".format(self.origin)
         text = text + \
-                "Chuťově je to docela {}, voltáž je {} %. \n".format(self.smoothness_level, self.voltage)
+                "Smoothness je {}, voltáž je {} %. \n".format(self.smoothness, self.voltage)
 
         if(len(self.party_link) > 0):
             text = text + \
@@ -47,8 +46,6 @@ class Gin(Booze):
         self.pepperness = form['pepperness']
         self.tonics = form.getlist('tonics')
         self.gt_smoothness = int(form['gt_smoothness'])
-        self.gt_smoothness_level = config['booze_gen'][
-                'smoothness_levels'][self.gt_smoothness]
 
     def generate_text(self):
         text = super(Gin, self).generate_text()
@@ -59,7 +56,7 @@ class Gin(Booze):
         if len(self.tonics) > 0:
             text = text + "Testováno s toniky {}. ".format(self.tonics)
             text = text + \
-                    "V G&T byl docela {}.\n".format(self.gt_smoothness_level)
+                    "V G&T byl docela {}.\n".format(self.gt_smoothness)
         return text
 
 

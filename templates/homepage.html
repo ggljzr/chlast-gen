@@ -5,12 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
     <script type="text/javascript">
-        function show_smoothness(smoothness_elem_id, smoothness_value_id) {
-            var smooth_levels = {{ form.config['booze_gen']['smoothness_levels'] | tojson }};
-            var val = document.getElementById(smoothness_elem_id).value;
-            document.getElementById(smoothness_value_id).innerHTML = smooth_levels[val];
-        }
-
         function show_boozetype_fields()
         {
             var booze_type = document.getElementById("booze_type").value;
@@ -62,18 +56,17 @@
 
                 <div class="form_elem">
                     <h2>{{ form.smoothness.label }}</h2> 
-                    {{ form.smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness('smoothness', 'smoothness_value')") }}
-                    <div id="smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
+                    {{ form.smoothness(min=0, max=form.SMOOTH_LEVELS - 1) }}
                 </div>
 
                 <div class="gin_form_elem" id="juniperness_div">
                     <h2>{{ form.juniperness.label }}</h2>
-                    {{ form.juniperness(min=0, max=100) }}
+                    {{ form.juniperness(min=0, max=form.JUNIP_LEVELS - 1) }}
                 </div>
 
                 <div class="gin_form_elem" id="pepperness_div">
                     <h2>{{ form.pepperness.label }}</h2>
-                    {{ form.pepperness(min=0, max=100) }}
+                    {{ form.pepperness(min=0, max=form.PEPPER_LEVELS - 1) }}
                 </div>
 
                 <div class="gin_form_elem" id="tonics_div">
@@ -83,8 +76,7 @@
 
                 <div class="gin_form_elem" id="gt_smoothness_div">
                     <h2>{{ form.gt_smoothness.label }}</h2> 
-                    {{ form.gt_smoothness(min=0, max=form.smooth_levels - 1, onchange="show_smoothness('gt_smoothness', 'gt_smoothness_value')") }}
-                    <div id="gt_smoothness_value" class="text">{{ form.config['booze_gen']['smoothness_levels'][0] }}</div>
+                    {{ form.gt_smoothness(min=0, max=form.SMOOTH_LEVELS - 1) }}
                 </div>
 
 
