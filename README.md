@@ -1,6 +1,6 @@
-#Generátor popisu chlastu.
+# Generátor popisu chlastu.
 
-##je potřeba
+## je potřeba
 * Python3
 * Flask http://flask.pocoo.org/
 * wtform (je mozna u toho flasku ale nevim)
@@ -8,10 +8,10 @@
 
 všechno by mělo jít nainstalovat přes pip, ale na windows nevim no
 
-##deployment
+## deployment
 http://vladikk.com/2013/09/12/serving-flask-with-nginx-on-ubuntu/
 
-##todo
+## todo
 nahodny generovani textu, nahravani clanku na wiki (autorizace pres bcrypt a naky pevny heslo)
 taky mozna nak predelat nacitani toho konfiguraku
 
